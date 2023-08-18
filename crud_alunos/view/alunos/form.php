@@ -50,12 +50,17 @@
             </select>
         </div>
 
+        <br>
+
         <input type="hidden" name="submetido" value="1"/>
         
         <button type="submit">Gravar</button>
         <button type="reset">Limpar</button>
         
     </form>
+
+    <br>
+    <a href="listar.php">Voltar</a>
 
 <?php
     include_once(__DIR__."/../include/footer.php");

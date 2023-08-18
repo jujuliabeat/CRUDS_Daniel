@@ -12,6 +12,7 @@ class Aluno {
 
     
     public function __construct() {
+        $this->id = 0;
         $this->curso = null;
     }
 

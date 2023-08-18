@@ -13,6 +13,15 @@
             $this->conn = Connection::getConnection();
         }
 
+        public function insert(Aluno $aluno) {
+            $sql = "INSERT INTO  alunos (nome, idade, estrangeiro, id_curso)" . 
+            " VALUES(?, ?, ?, ?)";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$aluno->getNome(), $aluno->getIdade(), $aluno->getEstrangeiro(), $aluno->getCurso()->getId()]);
+
+        }
+
         public function list() {
             $sql = "SELECT a.*," . 
             " c.nome AS nome_curso, c.turno As turno_curso".
