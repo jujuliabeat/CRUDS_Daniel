@@ -4,7 +4,7 @@
 
     class AlunoService {
 
-        public function validarDados (Aluno $aluno) {
+        public function validarDados(Aluno $aluno) {
             $erros = array();
             
             // Validar nome
@@ -16,13 +16,13 @@
 
             } if (! $aluno->getEstrangeiro()) {
                 array_push($erros, "Informe se é estrangeiro!");
+            }
 
-            } if (! $aluno->getCurso()->getId()) {
+            if(! $aluno->getCurso()) {
                 array_push($erros, "Informe o curso!");
-            } 
+            }
 
             return $erros;
             
         }
     }
-?>

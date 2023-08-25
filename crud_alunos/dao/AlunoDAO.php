@@ -18,7 +18,8 @@
             " VALUES(?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$aluno->getNome(), $aluno->getIdade(), $aluno->getEstrangeiro(), $aluno->getCurso()->getId()]);
+            $stmt->execute([$aluno->getNome(), $aluno->getIdade(), 
+                        $aluno->getEstrangeiro(), $aluno->getCurso()->getId()]);
 
         }
 
@@ -34,6 +35,32 @@
             return $this->mapBancoParaObjeto($result);
 
         }
+
+        public function findById(int $id) {
+            $conn = Connection::getConnection();
+    
+            $sql = "SELECT a.*," . 
+                    " c.nome AS nome_curso, c.turno AS turno_curso" . 
+                    " FROM alunos a" .
+                    " JOIN cursos c ON (c.id = a.id_curso)" .
+                    " WHERE a.id = ?";
+    
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$id]);
+            $result = $stmt->fetchAll();
+    
+            //Criar o objeto Aluno
+            $alunos = $this->mapBancoParaObjeto($result);
+    
+            if(count($alunos) == 1)
+                return $alunos[0];
+            elseif(count($alunos) == 0)
+                return null;
+    
+            die("AlunoDAO.findById - Erro: mais de um aluno".
+                    " encontrado para o ID " . $id);
+        }
+    
 
         private function mapBancoParaObjeto($result){
             $alunos = array();

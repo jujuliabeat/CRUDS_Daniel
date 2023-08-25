@@ -9,20 +9,25 @@
     // print_r($cursos);
 ?>
 
-    <h3>Inserir Alunos</h3>
+    <h3><?php
+        echo (!$aluno || $aluno->getId() <= 0 ? 'Inserir' : 'Alterar')
+    ?> Alunos</h3>
 
     <form action="" method="POST" id="form">
+        
 
         <div>
             <label for="txtNome">Nome:</label>
-            <input type="text" name="nome" id="txtNome"/>
+            <input type="text" name="nome" id="txtNome"
+             value="<?php echo ($aluno ? $aluno->getNome() : "");?>"/>
         </div> 
 
         <br>
 
         <div>
             <label for="txtIdade">Idade:</label>
-            <input type="number" name="idade" id="txtIdade"/>
+            <input type="number" name="idade" id="txtIdade"
+                value="<?php echo ($aluno ? $aluno->getIdade() : '');?>"/>
         </div>
 
         <br>
@@ -31,8 +36,8 @@
             <label for="selEstrange">Estrangeiro:</label>
             <select name="estrang" id="selEstrange">
                 <option value="">--Selecione--</option>
-                <option value="S">Sim</option>
-                <option value="N">Não</option>
+                <option value="S" <?php echo ($aluno && $aluno->getEstrangeiro() == 'S' ? 'selected' : '');?>>Sim</option>
+                <option value="N" <?php echo ($aluno && $aluno->getEstrangeiro() == 'N' ? 'selected' : '');?>>Não</option>
             </select>
         </div>
 
@@ -42,9 +47,16 @@
             <label for="selCurso">Curso:</label>
             <select name="curso" id="selCurso">
                 <option value="">--Selecione o Curso--</option>
+                
                 <?php foreach($cursos as $curso): ?>
-                    <option value="<?= $curso->getId(); ?>">
-                        <?= $curso->getNome(); ?>
+                    <option value="<?= $curso->getId(); ?>"
+                        <?php
+                            if($aluno && $aluno->getCurso() &&
+                                $aluno->getCurso()->getId() == $curso->getId())
+                                echo 'selected';
+                        ?>
+                    >
+                            <?= $curso->getNome(); ?>
                     </option>
                 <?php endforeach ?>
             </select>
@@ -52,12 +64,18 @@
 
         <br>
 
+        <input type="hidden" name="id" value="<?php echo ($aluno ? $aluno->getId() : 0);?>"/>
         <input type="hidden" name="submetido" value="1"/>
         
         <button type="submit">Gravar</button>
         <button type="reset">Limpar</button>
         
     </form>
+
+    <div style="color: red;">
+        <?php echo $msgErro;?>
+
+    </div>
 
     <br>
     <a href="listar.php">Voltar</a>

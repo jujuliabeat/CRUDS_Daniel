@@ -19,18 +19,21 @@
            return $this->alunoDAO->list();
         }
 
+        public function buscarPorId(int $id) {
+            return $this->alunoDAO->findById($id);
+        }
+
         public function inserir(Aluno $aluno) {
             // Valida e retorna os erros caso exista
             $erros = $this->alunoService->validarDados($aluno);
 
-            if ($erros) {
-                return $erros;            
-
+            if ($erros)
+                return $erros;     
+                
             // Persiste o objeto e retorna uma array vazia
             $this->alunoDAO->insert($aluno);
             return array();
         }
-    }
 
 }
 ?>

@@ -45,7 +45,7 @@
                             <td><?php echo $a->getEstrangeiroTexto();?></td>
                             <td><?php echo $a->getcurso();?></td>
 
-                            <td><a href="#">
+                            <td><a href="alterar.php?idAluno=<?=$a->getId()?>">
                                     <img src="../../img/btn_editar.png">
                                 </a>
                             </td>
