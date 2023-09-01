@@ -19,7 +19,7 @@
     <h2 style="color:blueviolet;">Listagem de Alunos</h2>
 
     <div>
-        <a href="inserir.php">Inserir</a><br>
+        <a href="inserir.php">Inserir</a><br><br>
     </div>
 
     <table border="1" >
@@ -37,9 +37,7 @@
             <tbody>
                 <?php
                     foreach($alunos as $a):?>
-
                         <tr>
-
                             <td><?php echo $a->getNome();?></td>
                             <td><?php echo $a->getIdade();?></td>
                             <td><?php echo $a->getEstrangeiroTexto();?></td>
@@ -49,15 +47,14 @@
                                     <img src="../../img/btn_editar.png">
                                 </a>
                             </td>
-
                             <td>
-                                <a href="#">
+                                <a href="excluir.php?idAluno=<?=$a->getId()?>"
+                                 onclick=" return confirm('Confirma a exclusão?');">
                                     <img src="../../img/btn_excluir.png">
                                 </a>
                             </td>
                             
                         </tr>
-
                 <?php endforeach;?>
             </tbody>
 

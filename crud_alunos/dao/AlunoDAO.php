@@ -23,11 +23,32 @@
 
         }
 
+        public function update(Aluno $aluno) {
+            $conn = Connection::getConnection();
+    
+            $sql = "UPDATE alunos SET nome = ?, idade = ?,". 
+                " estrangeiro = ?, id_curso = ?".
+                " WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$aluno->getNome(), $aluno->getIdade(), 
+                            $aluno->getEstrangeiro(), $aluno->getCurso()->getId(),
+                            $aluno->getId()]);
+        }
+    
+        public function deleteById(int $id) {
+            $conn = Connection::getConnection();
+    
+            $sql = "DELETE FROM alunos WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$id]);
+        }
+
         public function list() {
             $sql = "SELECT a.*," . 
             " c.nome AS nome_curso, c.turno As turno_curso".
             " FROM alunos a".
-            " JOIN cursos c ON (c.id = a.id_curso)";
+            " JOIN cursos c ON (c.id = a.id_curso)" . 
+            " ORDER BY a.nome";
             $stm = $this->conn->prepare($sql);
             $stm->execute();
             $result = $stm->fetchAll();

@@ -35,5 +35,18 @@
             return array();
         }
 
+        public function atualizar(Aluno $aluno) {
+            $erros = $this->alunoService->validarDados($aluno);
+            if($erros) 
+                return $erros;
+            
+            //Persiste o objeto e retorna um array vazio
+            $this->alunoDAO->update($aluno);
+            return array();
+        }
+        public function excluirPorId(int $id) {
+           $this->alunoDAO->deleteByID($id);
+        }
+
 }
 ?>
