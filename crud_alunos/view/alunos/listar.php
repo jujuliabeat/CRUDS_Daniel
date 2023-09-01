@@ -16,13 +16,13 @@
         require(__DIR__."/../include/header.php");
     ?>
 
-    <h2 style="color:blueviolet;">Listagem de Alunos</h2>
+    <h4 style="color:blueviolet;">Listagem de Alunos</h4>
 
     <div>
-        <a href="inserir.php">Inserir</a><br><br>
+        <a class="btn btn-sucess" href="inserir.php">Inserir</a>
     </div>
 
-    <table border="1" >
+    <table class="table table-striped">
 
             <thead >
                 <tr>
