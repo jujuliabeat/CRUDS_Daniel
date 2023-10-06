@@ -2,7 +2,7 @@
 require_once(__DIR__ . "/../../util/config.php");
 ?>
 
-<nav class="navbar navbar-expand-md navbar-light bg-success">
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #eeccff; color:azure;">
     <a class="navbar-brand" href="#">CRUD MVC</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navSite">

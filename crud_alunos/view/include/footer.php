@@ -1,4 +1,4 @@
-    <footer class="bg-light text-muted mt-3">
+    <footer class="w-100 p-3 bg-light text-muted fixed-bottom">
         <div class="text-center p-4">
             © 2023 Copyright:
             <a href="https://foz.ifpr.edu.br" target="blank">IFPR (Campus Foz do Iguaçu)</a>
