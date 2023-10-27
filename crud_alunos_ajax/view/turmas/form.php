@@ -24,7 +24,7 @@ $cursos = $cursoCont->listar();
 
             <div class="form-group">
                 <label for="somCurso">Curso:</label>
-                <select id="somCurso" name="curso" class="form-control" onchange="carregarDisciplinas();">
+                <select id="somCurso" name="curso" class="form-control" onchange="buscarDisciplinas();">
                     <option value="0">---Selecione---</option>
                     <?php foreach($cursos as $c): ?>
                         <option value="<?= $c->getId() ?>"

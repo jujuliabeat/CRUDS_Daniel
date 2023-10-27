@@ -8,7 +8,7 @@ $nomeUsuario = $usuCont->getNomeUsuarioLogado();
 if(! $nomeUsuario)
     $nomeUsuario = '(Anônimo)';
 ?>
-<nav class="navbar navbar-expand-md navbar-light bg-success">
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #eeccff; color:azure;">
     <a class="navbar-brand" href="#">CRUD MVC</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" 
