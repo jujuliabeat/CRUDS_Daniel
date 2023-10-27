@@ -48,5 +48,19 @@
 
             return false;
         }
+        
+        public function getNomeUsuario() {
+
+            return $this->loginService->getNomeUsuarioSessao();
+            
+            
+        }
+        
+        public function deslogar() {
+
+            return $this->loginService->getNomeUsuarioSessao();
+            
+            
+        }
     }
 ?>

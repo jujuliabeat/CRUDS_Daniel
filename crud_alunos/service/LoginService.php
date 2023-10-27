@@ -41,7 +41,9 @@
             // Retorna  o nome do usuário logado no sistema 
 
             public function getNomeUsuarioSessao() {
-                session_start();
+
+                if(session_status() != PHP_SESSION_ACTIVE)
+                    session_start();
 
                 if(isset($_SESSION['USU_NOME']))
 

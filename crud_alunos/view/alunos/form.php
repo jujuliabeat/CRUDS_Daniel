@@ -32,9 +32,9 @@ $cursos = $cursoCont->listar();
             <select id="selEstrang" name="estrang" class="form-control">
                 <option value="">---Selecione---</option>
                 <option value="S" <?php echo ($aluno && $aluno->getEstrangeiro() == 'S' ? 'selected' : ''); ?>>
-                    >Sim</option>
+                    Sim</option>
                 <option value="N" <?php echo ($aluno && $aluno->getEstrangeiro() == 'N' ? 'selected' : ''); ?>>
-                    >Não</option>
+                    Não</option>
 
             </select>
         </div><br>
