@@ -22,7 +22,8 @@ class Disciplina implements JsonSerializable {
     public function jsonSerialize(): array {
         return array("id" => $this->id,
                      "codigo" => $this->codigo,
-                     "nome" => $this->nome);
+                     "nome" => $this->nome,
+                    "curso" => $this->curso);
     }
 
     /**
