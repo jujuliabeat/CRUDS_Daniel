@@ -1,7 +1,10 @@
 const baseURL = document.getElementById('hddBaseUrl') . value;
 
+const inputAno = document.getElementById('txtAno');
 const inputCurso = document.getElementById('somCurso');
 const inputDisciplina = document.getElementById('somDisciplina');
+
+const divErros = document.getElementById('divMsgErro');
 
 buscarDisciplinas();
 
@@ -26,7 +29,7 @@ function buscarDisciplinas() {
     // Função de retorno executada após a resposta chegar no cliente 
     xhttp.onload = function() {
 
-        // Resposta da requisição 
+        // Resposta da requisição --- Callbek
         console.log("Resposta recebida do Servidor");
         
         var json = xhttp.responseText;
@@ -59,3 +62,35 @@ function buscarDisciplinas() {
         inputDisciplina.appendChild(option);
 
 }
+    function inserirTurma() {
+
+        // Estrutura FormData para enviar os parâmetros no corpo da requisição do tipo POST
+        var dados = new FormData();
+            dados.append("ano", inputAno.value);
+            dados.append("idCurso", inputCurso.value);
+            dados.append("idDisc", inputDisciplina.value);
+
+        // Rquisição AJAX
+        var xhttp = new XMLHttpRequest();
+
+        var url = baseURL + "/API/inserir_turma.php";
+
+        xhttp.open("POST", url);
+
+        xhttp.onload = function() {
+
+            var resposta = xhttp.responseText;
+            // console.log (resposta);
+            if(resposta) {
+                divErros.innerHTML = resposta;
+                divErros.style.display = "block";
+            } else {
+                // redirecionar para a listagem 
+                window.location = "listar.php";
+            }
+
+
+        }
+        xhttp.send(dados);
+
+    }
